@@ -14,6 +14,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+import styled from '@emotion/styled';
 
 interface Props {
   /**
@@ -53,6 +54,10 @@ const Header = (props: Props) => {
 
   const container = window !== undefined ? () => window().document.body : undefined;
 
+  const StyledLink = styled('a')`
+    text-decoration: none;
+  `;
+
   return (
     <Box sx={{ display: 'flex' }}>
       <AppBar component="nav">
@@ -76,7 +81,11 @@ const Header = (props: Props) => {
           <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
             {navItems.map((item) => (
               <Button key={item} sx={{ color: '#fff' }}>
-                <Link href={item === 'Home' ? '/' : `/${item.toLowerCase()}`}>{item}</Link>
+                <Link href={item === 'Home' ? '/' : `/${item.toLowerCase()}`}   >
+                  <StyledLink>
+                    {item}
+                  </StyledLink>
+                </Link>
               </Button>
             ))}
           </Box>
