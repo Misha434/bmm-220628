@@ -11,6 +11,7 @@ import Prerequisites from '../../components/Prerequisites';
 import { ParsedUrlQuery } from 'querystring';
 import Stacks from '../../components/Stacks'
 import { Typography } from '@mui/material';
+import rehypeHighlight from 'rehype-highlight';
 
 // props type
 type Props = {
@@ -66,7 +67,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
     // get the slug
     const { content, data } = getPost(slug);
     // serialize the data on the server side
-    const mdxSource = await serialize(content, { scope: data });
+    const mdxSource = await serialize(content, { scope: data, mdxOptions: { rehypePlugins: [rehypeHighlight] }, });
     return {
         props: {
             source: mdxSource,
