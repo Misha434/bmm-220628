@@ -1,7 +1,6 @@
 // import link artifacts
 import Link from 'next/link';
 // import image artifacts
-import Image from 'next/image';
 
 // Thumbnail properties
 type Props = {
@@ -16,7 +15,8 @@ type Props = {
 const Thumbnail: React.FC<Props> = ({ title, src, slug}: Props) => {
   // Add the Thumbnail cover image
     const image = (
-        <Image
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
         height={720}
         width={1280}
         src={src}
