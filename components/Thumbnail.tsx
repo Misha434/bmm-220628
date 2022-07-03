@@ -17,8 +17,8 @@ const Thumbnail: React.FC<Props> = ({ title, src, slug}: Props) => {
     const image = (
         // eslint-disable-next-line @next/next/no-img-element
         <img
-        height={720}
-        width={1280}
+        height={'auto'}
+        width={'100%'}
         src={src}
         alt={`Thumbnail cover image ${title}`}
         />
