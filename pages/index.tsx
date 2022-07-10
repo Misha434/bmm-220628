@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Thumbnail from '../components/Thumbnail';
 import type { NextPage, GetStaticProps } from 'next'
 import { IPost } from "../types/post";
@@ -6,12 +6,10 @@ import Link from 'next/link'
 import { getAllPosts } from "../utils/mdxUtils";
 import { Divider, Grid, Typography } from '@mui/material';
 
-// props type
 type Props = {
   posts: [IPost]
-}
+};
 
-// component render function
 const Home: NextPage<Props> = ({ posts }: Props) => {
   return (
     <div>
@@ -50,12 +48,11 @@ const Home: NextPage<Props> = ({ posts }: Props) => {
           </React.Fragment>
         ))}
       </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
 
-// get posts from serverside at build time
 export const getStaticProps: GetStaticProps = async () => {
   const initialPosts = getAllPosts([
     'title',
@@ -65,8 +62,7 @@ export const getStaticProps: GetStaticProps = async () => {
     'thumbnail'
   ]);
 
-  const posts = initialPosts.sort((a, b) => (a.date > b.date) ? -1 : 1);
+  const posts = initialPosts.sort((newPost, oldPost) => (newPost.date > oldPost.date) ? -1 : 1);
 
-  // retunr the posts props
-  return { props: { posts } }
+  return { props: { posts } };
 }
