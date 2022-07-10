@@ -1,0 +1,97 @@
+---
+title: '[Rails6] slim で実装したアプリで発生したアプリのエラー解消方法'
+date: '2021-11-23'
+description: 'Railsで開発したアプリで slim を'
+thumbnailUrl: '/rails-logo.png'
+tags: ['Rails', 'slim']
+---
+
+## 概要
+- Temple::FilterError in Sessions#new とエラーが表示された時の対応方法
+
+## 前提・使用環境
+- AWS Cloud9 (Ubuntu)
+- Ruby 2.6.6
+- Rails 6.1.2.1
+- ログイン機能 実装済(Railsチュートリアル)
+
+## 結論
+- slim で実装している場合、ブロック構文の end は不要なので削除する
+
+## エラー内容
+
+### View
+
+```
+# app/views/devise/sessions/new.html.slim
+
+- provide(:title, "Log In")
+h1 = yield(:title)
+
+.row
+  .col-md-6
+    = form_with(url: login_path,
+                scope: :session,
+                local: true) do |f|
+
+      = f.label :email
+      = f.email_field :email,
+                      class: 'form-control'
+
+      = f.label :password
+      = f.password_field :password,
+                          class: 'form-control'
+
+      = f.submit "Log In", class:'btn btn-primary'
+    - end
+    p New user?
+      = link_to "Sign Up Now!", signup_path
+```
+
+
+## Terminal・エラーの表示
+
+```
+Temple::FilterError in Sessions#new
+Showing /home/vagrant/centos7/rails_apps/smar/smar_app/app/views/sessions/new.html.slim where line # raised:
+
+Explicit end statements are forbidden
+  exps.each do |exp|
+    if control?(exp)
+      raise(Temple::FilterError, 'Explicit end statements are forbidden') if exp[2] =~ END_RE
+
+      # Two control code in a row. If this one is *not*
+      # an else block, we should close the previous one.
+```
+
+## 解決策
+
+- form_withヘルパー内のブロック構文の end を削除
+
+```
+  - provide(:title, "Log In")
+  h1 = yield(:title)
+
+  .row
+    .col-md-6
+      = form_with(url: login_path,
+                  scope: :session,
+                  local: true) do |f|
+
+        = f.label :email
+        = f.email_field :email,
+                        class:'form-control'
+
+        = f.label :password
+        = f.password_field :password,
+                           class:'form-control'
+
+        = f.submit "Log In", class:'btn btn-primary'
+      - - end
+      + 
+      p New user?
+        = link_to "Sign Up Now!", signup_path
+```
+
+## 参考資料
+<a href="https://qiita.com/rinkun/items/67cb58d432f538b26c27"><u>"Explicit end statements are forbidden"エラー - Qiita</u></a>

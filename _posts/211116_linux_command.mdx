@@ -1,0 +1,95 @@
+---
+title: '[Linux] 覚えたら便利そうな、コマンドライン編集操作'
+date: '2021-11-16'
+description: 'Linuxのコマンドライン編集で「覚えたら便利そうな操作」をまとめました。まずはカーソル移動の連打から卒業したい...'
+thumbnailUrl: '/linux_thumbnail.jpeg'
+tags: ['Linux']
+---
+
+## 概要
+- Linuxのコマンドライン編集で「覚えたら便利そうな操作」をまとめました。まずはカーソル移動の連打から卒業したい...
+
+## 使用環境
+
+- macOS, Terminal
+- shell: zsh
+
+## 操作
+
+- 操作は以下の例のように動かすものとする
+- ・command + a : キーの "command" と "a" を同時に入力
+- ・esc -> f : "esc" の後に "f" を入力
+
+### カーソル移動
+
+- ・行先頭に移動: control + a
+- ・行末に移動: control -> e
+- ・一単語ごとに移動: esc -> f, esc -> b (f: Frontward, b: Backward)
+
+### 文字削除系
+
+- ・Backspace, カーソル位置で一文字削除: control + d
+- 例
+
+<SyntaxHighlighter language="shellscript">
+  {`
+    # ■ : カーソル
+    touch■foobar buzzfizz
+    # control + d 実行後
+    touchfoobar buzzfizz
+  `}
+</SyntaxHighlighter>
+
+- ・カーソル位置より前の一単語削除: control + w
+- 例
+
+<SyntaxHighlighter language="shellscript">
+  {`
+    touch■foobar buzzfizz
+    # control + w 実行後
+    foobar buzzfizz
+  `}
+</SyntaxHighlighter>
+
+### カット・ヤンク(切り取り・ペースト)
+
+- ・カーソル以降を切り取り
+- 例
+
+<SyntaxHighlighter language="shellscript">
+  {`
+    touch■foobar buzzfizz
+    # control + k 実行後
+    touch
+  `}
+</SyntaxHighlighter>
+
+- ・一行切り取り
+- 例
+
+<SyntaxHighlighter language="shellscript">
+  {`
+    touch■foobar buzzfizz
+    # control + u 実行後
+    #=> (表示なし)
+  `}
+</SyntaxHighlighter>
+
+- ・(切り取りした内容を)ペースト
+- 例
+
+<SyntaxHighlighter language="shellscript">
+  {`
+    touch■foobar buzzfizz
+    # control + k 実行後
+    touch■
+    # controll + y 実行後
+    touch■foobar buzzfizz
+  `}
+</SyntaxHighlighter>
+
+## 参考書籍・URL
+<a href="https://www.sbcr.jp/product/4797380941/">
+  <u>新しいLinuxの教科書</u>
+</a>
+<a href="https://www.sbcr.jp/product/4797380941/"><img src="/new_linux_text.jpeg" width="150"></img></a>
