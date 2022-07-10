@@ -1,19 +1,47 @@
 ---
 date: '2021-11-25'
-thumbnail: /assets/getting-started.jpeg
-title: Getting started in Next.js with TypeScript
-description: A quick guide into Next.js and Typescript with deployment to vercel
+thumbnail: /assets/next-mui-mdx.png
+title: Next.js, MUI, MDX で作る Jamstack blog
+description: Next.js で環境構築〜デプロイまでを解説
 prerequisites: ['Node.js installed on your computer', 'Basic knowledge working with Next.js and TypeScript']
 stacks: ['Next.js','TypeScript','Git']
 ---
 
-# test post
+# JamStack なブログのススメ
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+「概要はいいから、作り方はよ！」という方は、「環境構築」からどうぞ。
 
-## test post
+## Jamstack とは？
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Webサイトを構築・運用に用いる主要な使用技術 JavaScript, API, Markdown のこと。
+記事は Markdown でかけることから、特にエンジニアには特におすすめ。
+
+## なぜ Jamstack を推すのか
+- やすい
+- ビルドがはやい(特に Next.js)
+
+### やすい
+かかった費用：ドメイン代 のみ。
+
+- ホスティングサービスはどれを選べばいいか？
+  - Vercel：手軽。無料版は商用不可(アフィリエイトのリンク NG)
+  - Cloudflare Pages：一手間かかるが、ビルド時間の制限の上限などが一番高め。
+  - Netlify
+  - GitHub Pages
+
+### ビルドがはやい(特に Next.js)
+
+dev 環境が立ち上がるのに 7秒くらい
+JamStack ブログでの対抗馬である、Gatsuby.js と比べると特に実感できる。 
+
+多機能な「Gatsuby」, シンプル・サクサクな「Next.js」かなというのが自分の意見です。
+
+- デメリット
+
+Next.js のJamstack関連の日本語情報が少ない。
+
+### 参考リンク
+[Jamstack とは？なぜ今 Jamstack なのか？ | Dyno](https://dyno.design/articles/what-is-JAMstack/)
 
 ```tsx filename="hello.tsx"
 const test = "test";
