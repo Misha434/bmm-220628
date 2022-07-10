@@ -18,7 +18,6 @@ const Home: NextPage<Props> = ({ posts }: Props) => {
       <Typography variant={'h4'} component={'h4'} mt={0} sx={{ marginBottom: "1.5rem"}} color={'#333'} align={'center'}> 
         Technical articles
       </Typography>
-
         {posts.map((post) => (
           <React.Fragment key={post.slug}>
             <Divider />
@@ -58,13 +57,15 @@ export default Home
 
 // get posts from serverside at build time
 export const getStaticProps: GetStaticProps = async () => {
-  const posts = getAllPosts([
+  const initialPosts = getAllPosts([
     'title',
     'slug',
     'date',
     'description',
     'thumbnail'
   ]);
+
+  const posts = initialPosts.sort((a, b) => (a.date > b.date) ? -1 : 1);
 
   // retunr the posts props
   return { props: { posts } }
