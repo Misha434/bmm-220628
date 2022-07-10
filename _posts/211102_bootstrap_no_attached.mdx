@@ -1,0 +1,67 @@
+---
+title: '[Rails6] Bootstrap のドロップダウンが動作しない'
+date: '2021-11-02'
+description: 'ドロップダウンのリストがなぜか表示されない時に、確認してほしいポイントをまとめました。'
+thumbnailUrl: '/rails-logo.png'
+tags: ['Bootstrap', 'Rails']
+---
+
+## 概要
+
+- Bootstrapを利用したRailsアプリを開発中に、「Bootstrapのインストールをしたはずなのに、ドロップダウンのリストが表示されない」場合に解決した内容をまとめています。
+
+## 前提・使用環境
+- AWS Cloud9 (Ubuntu)
+- Ruby 2.6.6
+- Rails 6.1.2.1
+## エラー内容
+- 以下を元に設定するも、自環境ではBootstrapのドロップダウンのリンクが表示されなかった。
+- <u><a href="https://qiita.com/kazutosato/items/d47b7705ee545de4cb1a">Rails 6にjQueryとBootstrapを入れる</a></u>
+
+## 実行したコマンド
+- Terminal
+<SyntaxHighlighter language="shellscript">
+  {`
+    yarn add bootstrap@next jquery popper.js
+  `}
+</SyntaxHighlighter>
+
+※ Bootstrapに関してはリンク先と異なるコマンドを実行している[^1]
+
+## ブラウザーに表示されたエラー
+
+- Browser
+<SyntaxHighlighter language="shellscript">
+  {`
+    Uncaught Error: Cannot find module '@popperjs/core'
+  `}
+</SyntaxHighlighter>
+
+## 解決策
+- Terminal
+<SyntaxHighlighter language="shellscript">
+  {`
+    yarn add @popperjs/core
+  `}
+</SyntaxHighlighter>
+
+## エラーの原因・背景など
+### エラー認識の経緯
+Bootstrapのドロップダウンが表示されなかったので、ブラウザの検証で確認。以下のエラーが発生していた。
+
+- Browser
+<SyntaxHighlighter language="shellscript">
+  {`
+    Uncaught Error: Cannot find module '@popperjs/core'
+  `}
+</SyntaxHighlighter>
+
+意訳："@popperjs/core moduleが見つけられないよ"
+ということだったのでYarnで上記モジュールをインストールした。
+- <u><a href="https://github.com/popperjs/popper-core">popperjs/popper-core - GitHub</a></u>
+
+### 参照先
+- <u><a href="https://getbootstrap.com/docs/5.0/getting-started/download/">Bootstrap 5.0 - Download - Yarn</a></u>
+
+[^1]: Bootstrapのバージョンによって変わるらしい。導入予定のBootstrapのバージョンのドキュメントに合わせた。
+
