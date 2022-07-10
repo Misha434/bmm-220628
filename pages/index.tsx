@@ -16,7 +16,7 @@ const Home: NextPage<Props> = ({ posts }: Props) => {
   return (
     <div>
       <Typography variant={'h4'} component={'h4'} mt={0} sx={{ marginBottom: "1.5rem"}} color={'#333'} align={'center'}> 
-        Technical articles
+        ベーグル・ミーシャ・マッハ
       </Typography>
         {posts.map((post) => (
           <React.Fragment key={post.slug}>
