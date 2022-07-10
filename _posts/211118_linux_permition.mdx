@@ -2,7 +2,7 @@
 title: '[Linux] アクセス権限に関して再復習'
 date: '2021-11-18'
 description: 'chmod コマンドに関して'
-thumbnailUrl: '/linux_thumbnail.jpeg'
+thumbnail: /assets/linux_thumbnail.jpeg
 tags: ['Linux']
 ---
 
@@ -15,59 +15,50 @@ tags: ['Linux']
 - shell: zsh
 
 ## コマンド
-<SyntaxHighlighter language="shellscript">
-  {`
-    chmod [モード] [ファイル]
-    # 例
-    chmod +x example.txt
-  `}
-</SyntaxHighlighter>
-
+```
+  chmod [モード] [ファイル]
+  # 例
+  chmod +x example.txt
+```
 ## モード
-- ・「１：誰に対して」「２：どうするか」「３：どの動作に」を記述
-- ・「シンボルモード」「数値モード」で記述
+- 「１：誰に対して」「２：どうするか」「３：どの動作に」を記述
+- 「シンボルモード」「数値モード」で記述
 - まずは「シンボルモード」を前提に説明
 
 ### １：誰に対して
 - 「シンボルモード」
-- ・u: オーナー
-- ・g: グループ
-- ・o: その他ユーザー
-- ・a: ugo 全て
+- u: オーナー
+- g: グループ
+- o: その他ユーザー
+- a: ugo 全て
 
-<SyntaxHighlighter language="shellscript">
-  {`
+
+```
     # 例: example.txt の実行権限をオーナーに付与
     chmod u+x example.txt
-  `}
-</SyntaxHighlighter>
-
+```
 
 ### ２：どうするか
 - 権限をどうするか
-- ・+: 付与
-- ・-: 剥奪
-- ・=: 指定権限と等しくする
+- +: 付与
+- -: 剥奪
+- =: 指定権限と等しくする
 
-<SyntaxHighlighter language="shellscript">
-  {`
+```
     # 例: example.txt の書き込みをグループに対して無効化
     chmod g-w example.txt
-  `}
-</SyntaxHighlighter>
+```
 
 ### ３：どの動作に
 - 動作の対象を指定
-- ・r: 読込
-- ・w: 書込
-- ・x: 実行
+- r: 読込
+- w: 書込
+- x: 実行
 
-<SyntaxHighlighter language="shellscript">
-  {`
-    # 例: example.txt の実行権限を全てのユーザーに付与
-    chmod a+x example.txt
-  `}
-</SyntaxHighlighter>
+```
+  # 例: example.txt の実行権限を全てのユーザーに付与
+  chmod a+x example.txt
+```
 
 ## 参考書籍・URL
 <a href="https://www.sbcr.jp/product/4797380941/">

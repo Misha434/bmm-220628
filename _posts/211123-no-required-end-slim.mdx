@@ -2,7 +2,7 @@
 title: '[Rails6] slim で実装したアプリで発生したアプリのエラー解消方法'
 date: '2021-11-23'
 description: 'Railsで開発したアプリで slim を'
-thumbnailUrl: '/rails-logo.png'
+thumbnail: /assets/rails-logo.png
 tags: ['Rails', 'slim']
 ---
 
@@ -22,7 +22,7 @@ tags: ['Rails', 'slim']
 
 ### View
 
-```
+```irb
 # app/views/devise/sessions/new.html.slim
 
 - provide(:title, "Log In")
@@ -51,7 +51,7 @@ h1 = yield(:title)
 
 ## Terminal・エラーの表示
 
-```
+```sh
 Temple::FilterError in Sessions#new
 Showing /home/vagrant/centos7/rails_apps/smar/smar_app/app/views/sessions/new.html.slim where line # raised:
 
@@ -68,7 +68,7 @@ Explicit end statements are forbidden
 
 - form_withヘルパー内のブロック構文の end を削除
 
-```
+```irb
   - provide(:title, "Log In")
   h1 = yield(:title)
 
